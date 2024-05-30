@@ -20,10 +20,10 @@ function App() {
 
   //Registrar colaborador
 
-const registrarColaborador = (Colaborador) =>{
-  console.log("Nuevo colaborador", Colaborador);
+const registrarColaborador = (colaborador) =>{
+  console.log("Nuevo colaborador", colaborador);
   //spread operator
-  actualizarColaboradores([...colaboradores, colaboradores])
+  actualizarColaboradores([...colaboradores, colaborador])
 }
   //Lista de equipos
 
@@ -71,9 +71,13 @@ const registrarColaborador = (Colaborador) =>{
   return (
     <div >
     <Header />
+
     {/*mostrarFormulario ?  <Formulario /> : <></>*/}
-    {mostrarFormulario && <Formulario 
+
+    {
+    mostrarFormulario && <Formulario 
     equipos={equipos.map((equipo)=>equipo.titulo)} 
+
     registrarColaborador={registrarColaborador}
     
     /> 
@@ -82,7 +86,12 @@ const registrarColaborador = (Colaborador) =>{
     <MiOrg cambiarMostrar={cambiarMostrar} />
   
    {
-    equipos.map((equipo)=><Equipo datos={equipo} key={equipo.titulo} />)
+    equipos.map((equipo)=> <Equipo 
+    datos={equipo} 
+    key={equipo.titulo} 
+    colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo )}
+      />
+    )
    }
 
     </div>
