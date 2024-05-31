@@ -5,6 +5,7 @@ import Formulario from './componentes/Formulario/Formulario';
 import MiOrg from './componentes/MiOrg';
 import Equipo from './componentes/Equipo';
 import Colaborador from './componentes/Colaborador';
+import Footer from './componentes/Footer';
 
 
 function App() {
@@ -93,6 +94,9 @@ const registrarColaborador = (colaborador) =>{
       />
     )
    }
+
+  <Footer />
+   
 
     </div>
   );
