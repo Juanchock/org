@@ -10,7 +10,7 @@ import Footer from './componentes/Footer';
 
 
 function App() {
-  const[mostrarFormulario,actualizarMostrar] = useState(false)
+  const[mostrarFormulario,actualizarMostrar] = useState(true)
   const [colaboradores,actualizarColaboradores] =useState([{
     id:uuid(),
     equipo:"Front End",
@@ -109,6 +109,15 @@ const registrarColaborador = (colaborador) =>{
   actualizarColaboradores([...colaboradores, colaborador])
 }
 
+ // Eliminar colaborador
+
+ const eliminarColaborador= (id) =>{
+  console.log("Eliminar colaborador", id);
+  const nuevosColaboradores = colaboradores.filter((colaborador)=>colaborador.id !== id)
+  actualizarColaboradores(nuevosColaboradores);
+}
+
+
   //Actualizar color de equipo
 
   const actulizarColor = (color, id)=> {
@@ -124,15 +133,11 @@ const registrarColaborador = (colaborador) =>{
     actualizarEquipos(equiposActualizados)
   }
 
-
-  // Eliminar colaborador
-
-  const eliminarColaborador= () =>{
-    console.log("Eliminar colaborador");
+  //Crear equipo
+  const crearEquipo = (nuevoEquipo) => {
+    console.log(nuevoEquipo);
+    actualizarEquipos([...equipos, {...nuevoEquipo, id:uuid()}])
   }
-
-
-
 
 
   return (
@@ -144,8 +149,8 @@ const registrarColaborador = (colaborador) =>{
     {
     mostrarFormulario && <Formulario 
     equipos={equipos.map((equipo)=>equipo.titulo)} 
-
     registrarColaborador={registrarColaborador}
+    crearEquipo={crearEquipo}
     
     /> 
     }
