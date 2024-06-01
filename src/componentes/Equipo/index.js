@@ -24,6 +24,7 @@ const estiloTitulo ={borderColor: colorPrimario}
                 value={colorPrimario}
                 onChange={(evento)=>{
                     actulizarColor(evento.target.value, id)
+                    
                 }}
             
             
