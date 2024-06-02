@@ -10,35 +10,39 @@ import Footer from './componentes/Footer';
 
 
 function App() {
-  const[mostrarFormulario,actualizarMostrar] = useState(true)
+  const[mostrarFormulario,actualizarMostrar] = useState(false)
   const [colaboradores,actualizarColaboradores] =useState([{
     id:uuid(),
     equipo:"Front End",
     foto:"https://github.com/JeanmarieAluraLatam.png",
     nombre:"jUan",
-    puesto:"instructor"
+    puesto:"instructor",
+    fav: true
   },
   {
     id:uuid(),
     equipo:"Programación",
     foto:"https://github.com/JeanmarieAluraLatam.png",
     nombre:"jkarol",
-    puesto:"gerente"
+    puesto:"gerente",
+    fav: false
   },
   {
     id:uuid(),
     equipo:"UX y Diseño",
     foto:"https://github.com/JeanmarieAluraLatam.png",
     nombre:"sebas",
-    puesto:"contador"
+    puesto:"contador",
+    fav:false
   },
   {
     id:uuid(),
     equipo:"Programación",
     foto:"https://github.com/JeanmarieAluraLatam.png",
     nombre:"pepe",
-    puesto:"colaborador"
-  },
+    puesto:"colaborador",
+    fav:false
+  }
 
 
 
@@ -139,6 +143,16 @@ const registrarColaborador = (colaborador) =>{
     actualizarEquipos([...equipos, {...nuevoEquipo, id:uuid()}])
   }
 
+  const like = (id) => {
+    console.log("like", id)
+    const coloboradoresActualizados = colaboradores.map((colaborador) =>{
+      if(colaborador.id === id){
+        colaborador.fav = !colaborador.fav
+      }
+      return colaborador
+    })
+    actualizarColaboradores(coloboradoresActualizados)
+  }
 
   return (
     <div >
@@ -164,6 +178,7 @@ const registrarColaborador = (colaborador) =>{
     colaboradores={colaboradores.filter(colaborador => colaborador.equipo === equipo.titulo )}
     eliminarColaborador={eliminarColaborador}
     actulizarColor={actulizarColor}
+    like={like}
       />
     )
    }
